@@ -1,0 +1,3204 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrowX Fashion - Luxury Clothing Store</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: '#D4AF37',
+                            dark: '#0A0A0A',
+                            darkGray: '#121212',
+                            lightGray: '#1C1C1E',
+                            goldHover: '#C5A028'
+                        }
+                    },
+                    backgroundImage: {
+                        'glass-gradient': 'linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01))',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts - Syncopate & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .heading-font {
+            font-family: 'Syncopate', sans-serif;
+        }
+        /* Custom Premium Glassmorphic style */
+        .glass-card {
+            background: rgba(18, 18, 18, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card-light {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        .text-glow {
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        .card-glow:hover {
+            box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.25);
+            transform: translateY(-4px);
+        }
+        /* Hide scrollbars */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-[#0A0A0A] text-white transition-colors duration-300">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-gradient-to-r from-amber-500 via-rose-500 to-indigo-600 text-[11px] font-bold tracking-widest text-center py-2 px-4 uppercase text-black">
+        ✨ GrowX Fashion Premium Launch Event • Use code <span class="underline">GROWX20</span> for 20% off • Free Express Shipping above ₹1500 ✨
+    </div>
+
+    <!-- MAIN NAVBAR (Sticky & Glassmorphic) -->
+    <nav class="sticky top-0 z-50 glass-card transition-all duration-300 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <div class="flex-shrink-0 cursor-pointer" onclick="switchTab('home')">
+                    <h1 class="heading-font text-xl md:text-2xl font-extrabold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-rose-400 to-indigo-500">
+                        GROWX
+                    </h1>
+                    <p class="text-[9px] tracking-[0.3em] uppercase text-gray-400 font-medium text-center">FASHION</p>
+                </div>
+
+                <!-- Desktop Mega Menu with Men & Women Dropdown Lists -->
+                <div class="hidden xl:flex space-x-6 text-[12px] font-bold tracking-wider uppercase text-gray-300">
+                    <button onclick="switchTab('home')" class="nav-link hover:text-amber-400 py-2 transition-all">Home</button>
+                    
+                    <!-- MEN Dropdown -->
+                    <div class="relative group py-2">
+                        <button class="hover:text-amber-400 transition-colors flex items-center gap-1 uppercase">
+                            Men <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-44 rounded-xl glass-card border border-white/10 p-2 shadow-2xl opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200">
+                            <button onclick="filterShop('men-shirts')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-white/5 hover:text-amber-400 text-[11px] font-semibold">Shirts</button>
+                            <button onclick="filterShop('men-pants')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-white/5 hover:text-amber-400 text-[11px] font-semibold">Pants</button>
+                            <button onclick="filterShop('men-baggy')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-white/5 hover:text-amber-400 text-[11px] font-semibold">Baggy</button>
+                        </div>
+                    </div>
+
+                    <!-- WOMEN Dropdown -->
+                    <div class="relative group py-2">
+                        <button class="hover:text-rose-400 transition-colors flex items-center gap-1 uppercase">
+                            Women <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-44 rounded-xl glass-card border border-white/10 p-2 shadow-2xl opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200">
+                            <button onclick="filterShop('women-kurties')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-white/5 hover:text-rose-400 text-[11px] font-semibold">Kurties</button>
+                            <button onclick="filterShop('women-tops')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-white/5 hover:text-rose-400 text-[11px] font-semibold">Tops & Tees</button>
+                            <button onclick="filterShop('women-baggy')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-white/5 hover:text-rose-400 text-[11px] font-semibold">Baggy</button>
+                        </div>
+                    </div>
+
+                    <button onclick="filterShop('', 'new-arrivals')" class="nav-link text-amber-400 hover:text-amber-300 py-2 transition-all flex items-center gap-1">
+                        New Arrivals <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+                    </button>
+                    <button onclick="filterShop('', 'sale')" class="nav-link text-rose-500 hover:text-rose-400 py-2 transition-all font-bold">Sale</button>
+                </div>
+
+                <!-- Right Side Actions -->
+                <div class="flex items-center gap-4">
+                    
+                    <!-- Search Input Box -->
+                    <div class="relative hidden md:block w-48 lg:w-60">
+                        <input id="nav-search" type="text" placeholder="Search shirts, kurties, baggy..." 
+                            onkeyup="handleSearch(event)"
+                            class="w-full bg-white/5 border border-white/10 rounded-full py-1.5 pl-4 pr-10 text-xs text-white placeholder-gray-400 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition-all">
+                        <span class="absolute right-3.5 top-2 cursor-pointer" onclick="triggerSearch()">
+                            <svg class="w-4 h-4 text-gray-400 hover:text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        </span>
+                    </div>
+
+                    <!-- Theme Toggle -->
+                    <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-white/5 text-gray-400 hover:text-white transition-colors" title="Toggle Mode">
+                        <svg id="theme-icon-sun" class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+                        <svg id="theme-icon-moon" class="w-5 h-5 hidden text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    </button>
+
+                    <!-- Wishlist Link -->
+                    <button onclick="switchTab('dashboard'); openDashboardTab('wishlist')" class="relative p-2 rounded-full hover:bg-white/5 text-gray-400 hover:text-rose-500 transition-colors" title="Wishlist">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                        <span id="wishlist-badge" class="absolute -top-1 -right-1 bg-rose-500 text-[10px] text-white rounded-full w-4 h-4 flex items-center justify-center font-bold hidden">0</span>
+                    </button>
+
+                    <!-- Cart Link -->
+                    <button onclick="switchTab('cart')" class="relative p-2 rounded-full hover:bg-white/5 text-gray-400 hover:text-amber-400 transition-colors" title="Cart">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                        <span id="cart-badge" class="absolute -top-1 -right-1 bg-gradient-to-r from-amber-400 to-rose-500 text-[10px] text-black rounded-full w-4 h-4 flex items-center justify-center font-black hidden">0</span>
+                    </button>
+
+                    <!-- User Dashboard -->
+                    <button onclick="switchTab('dashboard')" class="p-2 rounded-full hover:bg-white/5 text-gray-400 hover:text-white transition-colors" title="Profile Dashboard">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                    </button>
+
+                    <!-- Admin Panel Button -->
+                    <button onclick="switchTab('admin')" class="hidden sm:flex items-center gap-1.5 px-3 py-1 text-xs border border-amber-400/30 hover:border-amber-400 rounded-md text-amber-400 font-semibold tracking-wider hover:bg-amber-400/10 transition-all uppercase">
+                        <span class="w-1.5 h-1.5 bg-amber-400 rounded-full animate-ping"></span> Admin
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MOBILE NAVIGATION DROPDOWN BUTTONS -->
+    <div class="xl:hidden flex items-center justify-between bg-black/60 backdrop-blur-md border-b border-white/5 py-3 px-4 overflow-x-auto gap-3 text-xs tracking-wider font-semibold uppercase text-gray-300 no-scrollbar">
+        <button onclick="switchTab('home')" class="whitespace-nowrap px-2.5 py-1 text-amber-400">Home</button>
+        <button onclick="filterShop('men-shirts')" class="whitespace-nowrap px-2.5 py-1">Men Shirts</button>
+        <button onclick="filterShop('men-pants')" class="whitespace-nowrap px-2.5 py-1">Men Pants</button>
+        <button onclick="filterShop('men-baggy')" class="whitespace-nowrap px-2.5 py-1">Men Baggy</button>
+        <button onclick="filterShop('women-kurties')" class="whitespace-nowrap px-2.5 py-1 text-rose-400">Women Kurties</button>
+        <button onclick="filterShop('women-tops')" class="whitespace-nowrap px-2.5 py-1">Women Tops</button>
+        <button onclick="filterShop('women-baggy')" class="whitespace-nowrap px-2.5 py-1">Women Baggy</button>
+    </div>
+
+    <!-- MAIN SECTIONS CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- ============================================= -->
+        <!-- 1. HOMEPAGE TAB                               -->
+        <!-- ============================================= -->
+        <section id="tab-home" class="tab-content space-y-16">
+            
+            <!-- Hero Carousel/Banner -->
+            <div class="relative rounded-3xl overflow-hidden h-[300px] sm:h-[450px] lg:h-[600px] flex items-center shadow-3xl">
+                <div class="absolute inset-0 bg-cover bg-center transition-all duration-700 brightness-75" style="background-image: url('https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1600&auto=format&fit=crop');"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent"></div>
+
+                <div class="relative z-10 px-8 sm:px-16 max-w-2xl space-y-4">
+                    <span class="inline-block px-3 py-1 text-[11px] font-bold tracking-widest uppercase bg-amber-400 text-black rounded-full shadow-lg">New Fashion Drop</span>
+                    <h1 class="heading-font text-4xl sm:text-5xl lg:text-7xl font-black tracking-tight leading-none text-white">
+                        UPGRADE YOUR STYLE.
+                    </h1>
+                    <p class="text-xs sm:text-sm text-gray-300 tracking-wide font-light max-w-md">
+                        Discover premium Men's Shirts, Pants & Baggy cuts, and luxurious Women's Chikankari & Cotton Kurties tailored for trendsetters.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <button onclick="filterShop('men-shirts')" class="px-8 py-3.5 bg-white text-black font-extrabold tracking-widest text-xs uppercase hover:bg-amber-400 hover:text-black transition-all rounded-full flex items-center gap-2 shadow-2xl">
+                            Shop Men
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </button>
+                        <button onclick="filterShop('women-kurties')" class="px-8 py-3.5 bg-white/10 border border-white/20 text-white font-extrabold tracking-widest text-xs uppercase hover:bg-white hover:text-black transition-all rounded-full">
+                            Shop Women
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trending Categories Grid -->
+            <div class="space-y-6">
+                <div class="flex justify-between items-end border-b border-white/10 pb-4">
+                    <div>
+                        <h2 class="heading-font text-xl sm:text-2xl font-extrabold tracking-widest text-white">TRENDING CATEGORIES</h2>
+                        <p class="text-[11px] text-gray-400 tracking-wider">Expertly categorized collections representing the varunexa premium standard</p>
+                    </div>
+                </div>
+
+                <!-- 5 Custom Category Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                    
+                    <div onclick="filterShop('men-shirts')" class="relative group h-48 rounded-2xl overflow-hidden cursor-pointer shadow-lg card-glow">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('./frontend/public/images/products/men_outfit_1.jpg');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <p class="text-[10px] text-amber-400 font-bold uppercase">MEN</p>
+                            <h3 class="text-xs font-extrabold tracking-wider uppercase text-white">Premium Shirts</h3>
+                        </div>
+                    </div>
+
+                    <div onclick="filterShop('men-pants')" class="relative group h-48 rounded-2xl overflow-hidden cursor-pointer shadow-lg card-glow">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('./frontend/public/images/products/men_outfit_2.jpg');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <p class="text-[10px] text-amber-400 font-bold uppercase">MEN</p>
+                            <h3 class="text-xs font-extrabold tracking-wider uppercase text-white">Structured Pants</h3>
+                        </div>
+                    </div>
+
+                    <div onclick="filterShop('men-baggy')" class="relative group h-48 rounded-2xl overflow-hidden cursor-pointer shadow-lg card-glow">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('./frontend/public/images/products/men_outfit_3.jpg');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <p class="text-[10px] text-amber-400 font-bold uppercase">MEN</p>
+                            <h3 class="text-xs font-extrabold tracking-wider uppercase text-white">Baggy Casuals</h3>
+                        </div>
+                    </div>
+
+                    <div onclick="filterShop('women-kurties')" class="relative group h-48 rounded-2xl overflow-hidden cursor-pointer shadow-lg card-glow">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-rose-950/80 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <p class="text-[10px] text-rose-400 font-bold uppercase">WOMEN</p>
+                            <h3 class="text-xs font-extrabold tracking-wider uppercase text-white">Traditional Kurties</h3>
+                        </div>
+                    </div>
+
+                    <div onclick="filterShop('women-tops')" class="relative group h-48 rounded-2xl overflow-hidden cursor-pointer shadow-lg card-glow">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=400&auto=format&fit=crop');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-rose-950/80 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <p class="text-[10px] text-rose-400 font-bold uppercase">WOMEN</p>
+                            <h3 class="text-xs font-extrabold tracking-wider uppercase text-white">Tops & Tees</h3>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Best Sellers Grid -->
+            <div class="space-y-6">
+                <div class="flex justify-between items-end border-b border-white/10 pb-4">
+                    <div>
+                        <h2 class="heading-font text-xl sm:text-2xl font-extrabold tracking-widest text-white">BEST SELLERS</h2>
+                        <p class="text-[11px] text-gray-400 tracking-wider">Top rated luxury garments flying off our shelves</p>
+                    </div>
+                </div>
+
+                <div id="homepage-bestsellers" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Loaded dynamically via JS -->
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ============================================= -->
+        <!-- 2. SHOPPING / PRODUCT GRID TAB               -->
+        <!-- ============================================= -->
+        <section id="tab-shop" class="tab-content hidden space-y-8">
+            
+            <!-- Category and Filter Header -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-white/10 pb-6 gap-4">
+                <div>
+                    <h2 id="shop-title" class="heading-font text-2xl font-extrabold tracking-widest text-white">SHOP ALL COLLECTIONS</h2>
+                    <p class="text-[11px] text-gray-400 tracking-wider font-light">Expertly styled premium apparel, curated for varunexa circle</p>
+                </div>
+                <!-- Action Controls (Sort dropdown) -->
+                <div class="flex items-center gap-3">
+                    <span class="text-xs text-gray-400">Sort By:</span>
+                    <select id="sort-select" onchange="applyFiltersAndRender()" class="bg-white/5 border border-white/10 rounded-lg text-xs px-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-amber-400 text-white cursor-pointer">
+                        <option value="newest" class="bg-black">Newest Arrivals</option>
+                        <option value="price-low" class="bg-black">Price: Low to High</option>
+                        <option value="price-high" class="bg-black">Price: High to Low</option>
+                        <option value="rating" class="bg-black">Top Customer Rated</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Sleek Horizontal Top Filter Bar -->
+            <div class="glass-card rounded-2xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                
+                <div class="flex flex-wrap items-center gap-6">
+                    
+                    <!-- 1. Refined Folders Dropdown -->
+                    <div class="flex items-center gap-2">
+                        <span class="text-[10px] text-gray-400 font-bold uppercase whitespace-nowrap">Category:</span>
+                        <select id="category-filter-select" onchange="handleCategoryFilterSelect(this.value)" class="bg-black border border-white/10 rounded-lg py-1.5 px-3 text-xs text-white focus:outline-none focus:border-amber-400">
+                            <option value="all">All Collections</option>
+                            <optgroup label="Men Folders" class="bg-black text-amber-400">
+                                <option value="men-shirts" class="text-white">Men Shirts</option>
+                                <option value="men-pants" class="text-white">Men Pants</option>
+                                <option value="men-baggy" class="text-white">Men Baggy</option>
+                            </optgroup>
+                            <optgroup label="Women Folders" class="bg-black text-rose-400">
+                                <option value="women-kurties" class="text-white">Women Kurties</option>
+                                <option value="women-tops" class="text-white">Women Tops</option>
+                                <option value="women-baggy" class="text-white">Women Baggy</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <!-- 2. Sizes Horizontal Picker -->
+                    <div class="flex items-center gap-2">
+                        <span class="text-[10px] text-gray-400 font-bold uppercase whitespace-nowrap">Size:</span>
+                        <div class="flex gap-1.5 bg-black/45 p-1 rounded-lg border border-white/10">
+                            <button id="size-btn-S" onclick="toggleSizeFilter('S', this)" class="w-8 h-8 text-[11px] font-bold rounded hover:bg-white/5 transition-all text-gray-300">S</button>
+                            <button id="size-btn-M" onclick="toggleSizeFilter('M', this)" class="w-8 h-8 text-[11px] font-bold rounded hover:bg-white/5 transition-all text-gray-300">M</button>
+                            <button id="size-btn-L" onclick="toggleSizeFilter('L', this)" class="w-8 h-8 text-[11px] font-bold rounded hover:bg-white/5 transition-all text-gray-300">L</button>
+                            <button id="size-btn-XL" onclick="toggleSizeFilter('XL', this)" class="w-8 h-8 text-[11px] font-bold rounded hover:bg-white/5 transition-all text-gray-300">XL</button>
+                        </div>
+                    </div>
+
+                    <!-- 3. Price Slider -->
+                    <div class="flex items-center gap-3">
+                        <span class="text-[10px] text-gray-400 font-bold uppercase whitespace-nowrap">Ceiling Price:</span>
+                        <input type="range" id="price-range-slider" min="500" max="5000" step="100" value="5000" oninput="updatePriceSlider(this.value)" class="accent-amber-400 bg-white/10 rounded-lg cursor-pointer h-1 w-28 sm:w-36">
+                        <span id="price-slider-value" class="text-[11px] text-amber-400 font-black whitespace-nowrap">₹5000</span>
+                    </div>
+
+                </div>
+
+                <!-- Reset Button -->
+                <button onclick="resetAllFilters()" class="text-xs font-bold text-rose-500 hover:underline uppercase flex items-center gap-1.5">
+                    Clear Filters <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+
+            </div>
+
+            <!-- Spacious Full-Width 4-Column Product Grid -->
+            <div class="space-y-8">
+                <!-- Products dynamically injected -->
+                <div id="shop-products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 animate-fadeIn"></div>
+                
+                <!-- Search feedback / Empty states -->
+                <div id="shop-empty-state" class="hidden text-center py-24 glass-card rounded-3xl space-y-4">
+                    <svg class="w-16 h-16 text-gray-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L12 12"></path></svg>
+                    <h3 class="text-lg font-bold">No Luxury Pieces Match Your Filters</h3>
+                    <p class="text-xs text-gray-400 max-w-sm mx-auto">Try resetting some parameters or looking up other active tags such as oversized garments or kurties.</p>
+                    <button onclick="resetAllFilters()" class="px-6 py-2.5 bg-white text-black text-xs font-bold uppercase rounded-full hover:bg-amber-400 transition-all">Reset Filters</button>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ============================================= -->
+        <!-- 3. DETAILED PRODUCT DETAIL TAB                -->
+        <!-- ============================================= -->
+        <section id="tab-product-detail" class="tab-content hidden space-y-12">
+            
+            <button onclick="switchTab('shop')" class="flex items-center gap-1.5 text-xs text-gray-400 hover:text-white uppercase font-bold tracking-wider mb-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                Back to Shop Collection
+            </button>
+
+            <div id="product-detail-layout" class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <!-- Dynamically populated detail view -->
+            </div>
+
+        </section>
+
+        <!-- ============================================= -->
+        <!-- 4. SHOPPING CART TAB                           -->
+        <!-- ============================================= -->
+        <section id="tab-cart" class="tab-content hidden space-y-8">
+            
+            <div class="border-b border-white/10 pb-4">
+                <h2 class="heading-font text-2xl font-extrabold tracking-widest text-white">YOUR SHOPPING CART</h2>
+                <p class="text-[11px] text-gray-400 tracking-wider">Secure and protected by high-standard Supabase authentication</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                
+                <!-- Left Cart Products List -->
+                <div id="cart-items-wrapper" class="lg:col-span-2 space-y-4">
+                    <!-- Items rendered dynamically -->
+                </div>
+
+                <!-- Right Checkout Price Details -->
+                <div class="glass-card rounded-3xl p-6 space-y-6">
+                    <h3 class="text-xs font-black tracking-widest uppercase border-b border-white/5 pb-3">ORDER SUMMARY</h3>
+                    
+                    <!-- Coupon Application Box -->
+                    <div class="space-y-2">
+                        <label class="text-[11px] font-bold text-gray-400 uppercase">Have a Luxury Code?</label>
+                        <div class="flex gap-2">
+                            <input id="coupon-input" type="text" placeholder="GROWX20, VARUNEXA50" class="flex-grow bg-white/5 border border-white/10 rounded-lg text-xs py-2 px-3 focus:outline-none focus:border-amber-400 text-white uppercase font-bold tracking-wider">
+                            <button onclick="applyPromoCode()" class="px-4 py-2 bg-white text-black text-xs font-black tracking-wider uppercase rounded-lg hover:bg-amber-400 transition-all">Apply</button>
+                        </div>
+                        <p id="coupon-message" class="text-[10px] hidden font-semibold"></p>
+                    </div>
+
+                    <!-- Price Calculations -->
+                    <div class="space-y-3 text-xs border-y border-white/5 py-4">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Subtotal:</span>
+                            <span id="cart-subtotal" class="font-bold text-white">₹0.00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Discount applied:</span>
+                            <span id="cart-discount" class="text-emerald-400 font-bold">₹0.00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Tax (18% standard):</span>
+                            <span id="cart-tax" class="font-bold text-white">₹0.00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Express Delivery:</span>
+                            <span id="cart-shipping" class="font-bold text-white">₹0.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Final Cost -->
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-bold text-white">TOTAL PAYABLE:</span>
+                        <span id="cart-total" class="text-lg font-black text-amber-400 text-glow">₹0.00</span>
+                    </div>
+
+                    <button onclick="startCheckout()" class="w-full py-4 bg-gradient-to-r from-amber-400 via-rose-500 to-indigo-600 text-black font-black tracking-widest text-xs uppercase hover:brightness-110 transition-all rounded-xl shadow-2xl flex items-center justify-center gap-2">
+                        SECURE CHECKOUT 
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    </button>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ============================================= -->
+        <!-- 5. CHECKOUT FLOW TAB                          -->
+        <!-- ============================================= -->
+        <section id="tab-checkout" class="tab-content hidden space-y-8">
+            
+            <div class="border-b border-white/10 pb-4 text-center">
+                <h2 class="heading-font text-2xl font-extrabold tracking-widest text-white">GROWX SECURE CHECKOUT</h2>
+                <p class="text-[11px] text-gray-400 tracking-wider">Your transaction is fully encrypted by standard Stripe / Razorpay servers</p>
+            </div>
+
+            <!-- Authentic Google Auth Mock Banner for checkout -->
+            <div id="checkout-login-box" class="glass-card max-w-md mx-auto rounded-3xl p-8 text-center space-y-6">
+                <div class="mx-auto w-12 h-12 bg-white/5 rounded-full flex items-center justify-center">
+                    <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                </div>
+                <div>
+                    <h3 class="text-sm font-bold text-white">SIGN-IN WITH SUPABASE AUTH</h3>
+                    <p class="text-xs text-gray-400 pt-1">Sign-in with Google is required to sync your shipping address & track items</p>
+                </div>
+                <button onclick="simulateGoogleLogin()" class="w-full py-3 border border-white/10 rounded-xl hover:bg-white/5 text-xs text-white font-semibold tracking-wide flex items-center justify-center gap-3 transition-all">
+                    <!-- Google Icon -->
+                    <svg class="w-4 h-4" viewBox="0 0 24 24">
+                        <path fill="#EA4335" d="M12 5.04c1.66 0 3.2.57 4.38 1.69l3.27-3.27C17.68 1.54 14.98 1 12 1 7.35 1 3.37 3.67 1.39 7.56l3.85 2.99c.9-2.69 3.42-4.51 6.76-4.51z"/>
+                        <path fill="#4285F4" d="M23.49 12.27c0-.81-.07-1.59-.2-2.36H12v4.47h6.45c-.28 1.47-1.11 2.72-2.36 3.56l3.66 2.84c2.14-1.97 3.38-4.87 3.38-8.51z"/>
+                        <path fill="#FBBC05" d="M5.24 14.57c-.24-.72-.38-1.5-.38-2.3c0-.8.14-1.58.38-2.3L1.39 6.98C.5 8.78 0 10.83 0 13c0 2.17.5 4.22 1.39 6.02l3.85-2.45z"/>
+                        <path fill="#34A853" d="M12 23c3.24 0 5.97-1.07 7.96-2.91l-3.66-2.84c-1.01.68-2.31 1.08-4.3 1.08-3.34 0-5.86-1.82-6.76-4.51l-3.85 2.99C3.37 20.33 7.35 23 12 23z"/>
+                    </svg>
+                    Continue with Google Auth
+                </button>
+            </div>
+
+            <!-- Main Forms after sign-in -->
+            <div id="checkout-main-forms" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                
+                <!-- Shipping Address Form -->
+                <div class="glass-card rounded-3xl p-6 sm:p-8 space-y-6">
+                    <h3 class="text-xs font-black tracking-widest uppercase border-b border-white/5 pb-3 text-white">Shipping & Contact Details</h3>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-1">
+                            <label class="text-[10px] text-gray-400 font-bold uppercase">First Name</label>
+                            <input id="checkout-fname" type="text" value="Varun" class="w-full bg-white/5 border border-white/10 rounded-lg py-2 px-3 text-xs text-white">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] text-gray-400 font-bold uppercase">Last Name</label>
+                            <input id="checkout-lname" type="text" value="Sharma" class="w-full bg-white/5 border border-white/10 rounded-lg py-2 px-3 text-xs text-white">
+                        </div>
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-[10px] text-gray-400 font-bold uppercase">Phone Number</label>
+                        <input id="checkout-phone" type="text" value="+91 98765 43210" class="w-full bg-white/5 border border-white/10 rounded-lg py-2 px-3 text-xs text-white">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-[10px] text-gray-400 font-bold uppercase">Street Address</label>
+                        <input id="checkout-street" type="text" value="102, Varunexa Luxury Enclave, Block-C" class="w-full bg-white/5 border border-white/10 rounded-lg py-2 px-3 text-xs text-white">
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="space-y-1">
+                            <label class="text-[10px] text-gray-400 font-bold uppercase">City</label>
+                            <input id="checkout-city" type="text" value="Salem" class="w-full bg-white/5 border border-white/10 rounded-lg py-2 px-3 text-xs text-white">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] text-gray-400 font-bold uppercase">State</label>
+                            <input id="checkout-state" type="text" value="Tamil Nadu" class="w-full bg-white/5 border border-white/10 rounded-lg py-2 px-3 text-xs text-white">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] text-gray-400 font-bold uppercase">Postal Code</label>
+                            <input id="checkout-postal" type="text" value="636001" class="w-full bg-white/5 border border-white/10 rounded-lg py-2 px-3 text-xs text-white">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment and Summary Info -->
+                <div class="glass-card rounded-3xl p-6 sm:p-8 space-y-6">
+                    <h3 class="text-xs font-black tracking-widest uppercase border-b border-white/5 pb-3 text-white">Choose Payment Gateway</h3>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <!-- Razorpay Card Option -->
+                        <div onclick="setCheckoutPayment('razorpay')" id="pay-opt-razorpay" class="p-4 border-2 border-amber-400 bg-amber-400/5 rounded-2xl cursor-pointer text-center space-y-2 transition-all">
+                            <h4 class="text-xs font-extrabold text-white">RAZORPAY</h4>
+                            <p class="text-[10px] text-gray-400">Cards, Netbanking, UPI, Wallet, EMI</p>
+                        </div>
+                        
+                        <!-- Stripe Card Option -->
+                        <div onclick="setCheckoutPayment('stripe')" id="pay-opt-stripe" class="p-4 border border-white/10 rounded-2xl cursor-pointer text-center space-y-2 transition-all hover:bg-white/5">
+                            <h4 class="text-xs font-extrabold text-white">STRIPE</h4>
+                            <p class="text-[10px] text-gray-400">International Credit / Debit Cards</p>
+                        </div>
+                    </div>
+
+                    <!-- Payment summary calculation copy -->
+                    <div class="border-t border-white/5 pt-4 space-y-2 text-xs">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Total order total:</span>
+                            <span id="checkout-order-total" class="font-bold text-amber-400 text-glow">₹0.00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Shipping method:</span>
+                            <span class="text-gray-300">BlueDart Express (3-5 Days)</span>
+                        </div>
+                    </div>
+
+                    <button onclick="placeSimulationOrder()" class="w-full py-4 bg-gradient-to-r from-amber-400 to-rose-500 text-black font-black tracking-widest text-xs uppercase hover:scale-105 transition-all rounded-xl shadow-2xl flex items-center justify-center gap-2">
+                        PLACE ORDER NOW 
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </button>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER SECTION -->
+    <footer class="bg-black border-t border-white/10 py-12 mt-16 text-xs text-gray-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="space-y-4">
+                <h3 class="heading-font text-white font-extrabold tracking-widest">GROWX FASHION</h3>
+                <p class="leading-relaxed font-light">Varunexa group's online storefront offering premium menswear, structured baggy wear, and traditional kurties.</p>
+                <p class="text-[10px]">© 2026 GrowX Fashion by Varunexa. All Rights Reserved.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold uppercase tracking-wider mb-4">Men Collections</h4>
+                <ul class="space-y-2">
+                    <li><button onclick="filterShop('men-shirts')" class="hover:text-amber-400 text-left">Premium Shirts</button></li>
+                    <li><button onclick="filterShop('men-pants')" class="hover:text-amber-400 text-left">Structured Pants</button></li>
+                    <li><button onclick="filterShop('men-baggy')" class="hover:text-amber-400 text-left">Baggy Outfits</button></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold uppercase tracking-wider mb-4">Women Collections</h4>
+                <ul class="space-y-2">
+                    <li><button onclick="filterShop('women-kurties')" class="hover:text-amber-400 text-left">Traditional Kurties</button></li>
+                    <li><button onclick="filterShop('women-tops')" class="hover:text-amber-400 text-left">Premium Tops & Tees</button></li>
+                    <li><button onclick="filterShop('women-baggy')" class="hover:text-amber-400 text-left">Baggy Styles</button></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE SHOWCASE LOGIC -->
+    <script>
+        // 1. DYNAMIC CATALOG PRODUCTS DATA (Fully mapped to your local flat-lay outfit pictures!)
+        let products = [
+        {
+                "id": "prod_men_1",
+                "name": "Men's Premium Ribbed Knit Polo & Trouser Outfit (Set 1)",
+                "slug": "mens-premium-ribbed-knit-polo-and-trouser-outfit-set-1",
+                "price": 1599.0,
+                "compare_at_price": 2079,
+                "category": "men-shirts",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_10_2026-07-10_10-23-48.jpg",
+                "live_image": "/images/products/photo_10_2026-07-10_10-23-48.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Knit Cotton",
+                "brand": "GrowX Knitwear",
+                "rating": 4.5,
+                "reviewsCount": 10,
+                "tags": [
+                        "men-shirts",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": true,
+                "isNewArrival": true
+        },
+        {
+                "id": "prod_men_2",
+                "name": "Men's Premium Ribbed Knit Polo & Trouser Outfit (Set 2)",
+                "slug": "mens-premium-ribbed-knit-polo-and-trouser-outfit-set-2",
+                "price": 1599.0,
+                "compare_at_price": 2079,
+                "category": "men-shirts",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_11_2026-07-10_10-23-48.jpg",
+                "live_image": "/images/products/photo_11_2026-07-10_10-23-48.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Knit Cotton",
+                "brand": "GrowX Knitwear",
+                "rating": 4.6,
+                "reviewsCount": 13,
+                "tags": [
+                        "men-shirts",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_men_3",
+                "name": "Men's Premium Ribbed Knit Polo & Trouser Outfit (Set 3)",
+                "slug": "mens-premium-ribbed-knit-polo-and-trouser-outfit-set-3",
+                "price": 1599.0,
+                "compare_at_price": 2079,
+                "category": "men-shirts",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_12_2026-07-10_10-23-48.jpg",
+                "live_image": "/images/products/photo_12_2026-07-10_10-23-48.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Knit Cotton",
+                "brand": "GrowX Knitwear",
+                "rating": 4.7,
+                "reviewsCount": 16,
+                "tags": [
+                        "men-shirts",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_men_4",
+                "name": "Men's Premium Ribbed Knit Polo & Trouser Outfit (Set 4)",
+                "slug": "mens-premium-ribbed-knit-polo-and-trouser-outfit-set-4",
+                "price": 1599.0,
+                "compare_at_price": 2079,
+                "category": "men-shirts",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_13_2026-07-10_10-23-48.jpg",
+                "live_image": "/images/products/photo_13_2026-07-10_10-23-48.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Knit Cotton",
+                "brand": "GrowX Knitwear",
+                "rating": 4.8,
+                "reviewsCount": 19,
+                "tags": [
+                        "men-shirts",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": true
+        },
+        {
+                "id": "prod_men_5",
+                "name": "Men's Premium Ribbed Knit Polo & Trouser Outfit (Set 5)",
+                "slug": "mens-premium-ribbed-knit-polo-and-trouser-outfit-set-5",
+                "price": 1599.0,
+                "compare_at_price": 2079,
+                "category": "men-shirts",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_14_2026-07-10_10-23-48.jpg",
+                "live_image": "/images/products/photo_14_2026-07-10_10-23-48.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Knit Cotton",
+                "brand": "GrowX Knitwear",
+                "rating": 4.9,
+                "reviewsCount": 22,
+                "tags": [
+                        "men-shirts",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_men_6",
+                "name": "Men's Oxford Tailored Long-Sleeve Outfit (Set 6)",
+                "slug": "mens-oxford-tailored-long-sleeve-outfit-set-6",
+                "price": 1799.0,
+                "compare_at_price": 2339,
+                "category": "men-shirts",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_15_2026-07-10_10-23-48.jpg",
+                "live_image": "/images/products/photo_15_2026-07-10_10-23-48.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Oxford Cotton",
+                "brand": "GrowX Tailored",
+                "rating": 5.0,
+                "reviewsCount": 25,
+                "tags": [
+                        "men-shirts",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": true,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_men_7",
+                "name": "Men's Oxford Tailored Long-Sleeve Outfit (Set 7)",
+                "slug": "mens-oxford-tailored-long-sleeve-outfit-set-7",
+                "price": 1799.0,
+                "compare_at_price": 2339,
+                "category": "men-shirts",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_16_2026-07-10_10-23-48.jpg",
+                "live_image": "/images/products/photo_16_2026-07-10_10-23-48.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Oxford Cotton",
+                "brand": "GrowX Tailored",
+                "rating": 4.5,
+                "reviewsCount": 28,
+                "tags": [
+                        "men-shirts",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": true
+        },
+        {
+                "id": "prod_men_8",
+                "name": "Men's Oxford Tailored Long-Sleeve Outfit (Set 8)",
+                "slug": "mens-oxford-tailored-long-sleeve-outfit-set-8",
+                "price": 1799.0,
+                "compare_at_price": 2339,
+                "category": "men-shirts",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_17_2026-07-10_10-23-48.jpg",
+                "live_image": "/images/products/photo_17_2026-07-10_10-23-48.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Oxford Cotton",
+                "brand": "GrowX Tailored",
+                "rating": 4.6,
+                "reviewsCount": 31,
+                "tags": [
+                        "men-shirts",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_men_9",
+                "name": "Men's Oxford Tailored Long-Sleeve Outfit (Set 9)",
+                "slug": "mens-oxford-tailored-long-sleeve-outfit-set-9",
+                "price": 1799.0,
+                "compare_at_price": 2339,
+                "category": "men-shirts",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_18_2026-07-10_10-23-48.jpg",
+                "live_image": "/images/products/photo_18_2026-07-10_10-23-48.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Oxford Cotton",
+                "brand": "GrowX Tailored",
+                "rating": 4.7,
+                "reviewsCount": 34,
+                "tags": [
+                        "men-shirts",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_men_10",
+                "name": "Men's Oxford Tailored Long-Sleeve Outfit (Set 10)",
+                "slug": "mens-oxford-tailored-long-sleeve-outfit-set-10",
+                "price": 1799.0,
+                "compare_at_price": 2339,
+                "category": "men-shirts",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_19_2026-07-10_10-23-48.jpg",
+                "live_image": "/images/products/photo_19_2026-07-10_10-23-48.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Oxford Cotton",
+                "brand": "GrowX Tailored",
+                "rating": 4.8,
+                "reviewsCount": 37,
+                "tags": [
+                        "men-shirts",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": true
+        },
+        {
+                "id": "prod_men_11",
+                "name": "Men's Luxury Plaid Flannel Shirt & Chino Combo (Set 11)",
+                "slug": "mens-luxury-plaid-flannel-shirt-and-chino-combo-set-11",
+                "price": 1899.0,
+                "compare_at_price": 2469,
+                "category": "men-shirts",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_1_2026-07-10_10-23-48.jpg",
+                "live_image": "/images/products/photo_1_2026-07-10_10-23-48.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Premium Flannel",
+                "brand": "GrowX Premium",
+                "rating": 4.9,
+                "reviewsCount": 40,
+                "tags": [
+                        "men-shirts",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": true,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_men_12",
+                "name": "Men's Luxury Plaid Flannel Shirt & Chino Combo (Set 12)",
+                "slug": "mens-luxury-plaid-flannel-shirt-and-chino-combo-set-12",
+                "price": 1899.0,
+                "compare_at_price": 2469,
+                "category": "men-shirts",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_2026-07-10_10-20-11.jpg",
+                "live_image": "/images/products/photo_2026-07-10_10-20-11.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Premium Flannel",
+                "brand": "GrowX Premium",
+                "rating": 5.0,
+                "reviewsCount": 43,
+                "tags": [
+                        "men-shirts",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_men_13",
+                "name": "Men's Oxford Tailored Long-Sleeve Outfit (Set 13)",
+                "slug": "mens-oxford-tailored-long-sleeve-outfit-set-13",
+                "price": 1799.0,
+                "compare_at_price": 2339,
+                "category": "men-shirts",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_20_2026-07-10_10-23-48.jpg",
+                "live_image": "/images/products/photo_20_2026-07-10_10-23-48.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Oxford Cotton",
+                "brand": "GrowX Tailored",
+                "rating": 4.5,
+                "reviewsCount": 46,
+                "tags": [
+                        "men-shirts",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": true
+        },
+        {
+                "id": "prod_men_14",
+                "name": "Men's Oxford Tailored Long-Sleeve Outfit (Set 14)",
+                "slug": "mens-oxford-tailored-long-sleeve-outfit-set-14",
+                "price": 1799.0,
+                "compare_at_price": 2339,
+                "category": "men-shirts",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_21_2026-07-10_10-23-48.jpg",
+                "live_image": "/images/products/photo_21_2026-07-10_10-23-48.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Oxford Cotton",
+                "brand": "GrowX Tailored",
+                "rating": 4.6,
+                "reviewsCount": 49,
+                "tags": [
+                        "men-shirts",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_men_15",
+                "name": "Men's Oxford Tailored Long-Sleeve Outfit (Set 15)",
+                "slug": "mens-oxford-tailored-long-sleeve-outfit-set-15",
+                "price": 1799.0,
+                "compare_at_price": 2339,
+                "category": "men-shirts",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_22_2026-07-10_10-23-49.jpg",
+                "live_image": "/images/products/photo_22_2026-07-10_10-23-49.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Oxford Cotton",
+                "brand": "GrowX Tailored",
+                "rating": 4.7,
+                "reviewsCount": 52,
+                "tags": [
+                        "men-shirts",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_men_16",
+                "name": "Men's Graphic Dragon & Streetwear Baggy Tee Set (Set 16)",
+                "slug": "mens-graphic-dragon-and-streetwear-baggy-tee-set-set-16",
+                "price": 1299.0,
+                "compare_at_price": 1689,
+                "category": "men-baggy",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_23_2026-07-10_10-23-49.jpg",
+                "live_image": "/images/products/photo_23_2026-07-10_10-23-49.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Heavyweight Cotton",
+                "brand": "GrowX Streetwear",
+                "rating": 4.8,
+                "reviewsCount": 10,
+                "tags": [
+                        "men-baggy",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": true,
+                "isNewArrival": true
+        },
+        {
+                "id": "prod_men_17",
+                "name": "Men's Graphic Dragon & Streetwear Baggy Tee Set (Set 17)",
+                "slug": "mens-graphic-dragon-and-streetwear-baggy-tee-set-set-17",
+                "price": 1299.0,
+                "compare_at_price": 1689,
+                "category": "men-baggy",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_24_2026-07-10_10-23-49.jpg",
+                "live_image": "/images/products/photo_24_2026-07-10_10-23-49.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Heavyweight Cotton",
+                "brand": "GrowX Streetwear",
+                "rating": 4.9,
+                "reviewsCount": 13,
+                "tags": [
+                        "men-baggy",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_men_18",
+                "name": "Men's Graphic Dragon & Streetwear Baggy Tee Set (Set 18)",
+                "slug": "mens-graphic-dragon-and-streetwear-baggy-tee-set-set-18",
+                "price": 1299.0,
+                "compare_at_price": 1689,
+                "category": "men-baggy",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_25_2026-07-10_10-23-49.jpg",
+                "live_image": "/images/products/photo_25_2026-07-10_10-23-49.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Heavyweight Cotton",
+                "brand": "GrowX Streetwear",
+                "rating": 5.0,
+                "reviewsCount": 16,
+                "tags": [
+                        "men-baggy",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_men_19",
+                "name": "Men's Graphic Dragon & Streetwear Baggy Tee Set (Set 19)",
+                "slug": "mens-graphic-dragon-and-streetwear-baggy-tee-set-set-19",
+                "price": 1299.0,
+                "compare_at_price": 1689,
+                "category": "men-baggy",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_26_2026-07-10_10-23-49.jpg",
+                "live_image": "/images/products/photo_26_2026-07-10_10-23-49.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Heavyweight Cotton",
+                "brand": "GrowX Streetwear",
+                "rating": 4.5,
+                "reviewsCount": 19,
+                "tags": [
+                        "men-baggy",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": true
+        },
+        {
+                "id": "prod_men_20",
+                "name": "Men's Graphic Dragon & Streetwear Baggy Tee Set (Set 20)",
+                "slug": "mens-graphic-dragon-and-streetwear-baggy-tee-set-set-20",
+                "price": 1299.0,
+                "compare_at_price": 1689,
+                "category": "men-baggy",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_27_2026-07-10_10-23-49.jpg",
+                "live_image": "/images/products/photo_27_2026-07-10_10-23-49.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Heavyweight Cotton",
+                "brand": "GrowX Streetwear",
+                "rating": 4.6,
+                "reviewsCount": 22,
+                "tags": [
+                        "men-baggy",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_men_21",
+                "name": "Men's Graphic Dragon & Streetwear Baggy Tee Set (Set 21)",
+                "slug": "mens-graphic-dragon-and-streetwear-baggy-tee-set-set-21",
+                "price": 1299.0,
+                "compare_at_price": 1689,
+                "category": "men-baggy",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_28_2026-07-10_10-23-49.jpg",
+                "live_image": "/images/products/photo_28_2026-07-10_10-23-49.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Heavyweight Cotton",
+                "brand": "GrowX Streetwear",
+                "rating": 4.7,
+                "reviewsCount": 25,
+                "tags": [
+                        "men-baggy",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": true,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_men_22",
+                "name": "Men's Graphic Dragon & Streetwear Baggy Tee Set (Set 22)",
+                "slug": "mens-graphic-dragon-and-streetwear-baggy-tee-set-set-22",
+                "price": 1299.0,
+                "compare_at_price": 1689,
+                "category": "men-baggy",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_29_2026-07-10_10-23-49.jpg",
+                "live_image": "/images/products/photo_29_2026-07-10_10-23-49.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Heavyweight Cotton",
+                "brand": "GrowX Streetwear",
+                "rating": 4.8,
+                "reviewsCount": 28,
+                "tags": [
+                        "men-baggy",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": true
+        },
+        {
+                "id": "prod_men_23",
+                "name": "Men's Luxury Plaid Flannel Shirt & Chino Combo (Set 23)",
+                "slug": "mens-luxury-plaid-flannel-shirt-and-chino-combo-set-23",
+                "price": 1899.0,
+                "compare_at_price": 2469,
+                "category": "men-shirts",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_2_2026-07-10_10-23-48.jpg",
+                "live_image": "/images/products/photo_2_2026-07-10_10-23-48.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Premium Flannel",
+                "brand": "GrowX Premium",
+                "rating": 4.9,
+                "reviewsCount": 31,
+                "tags": [
+                        "men-shirts",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_men_24",
+                "name": "Men's Graphic Dragon & Streetwear Baggy Tee Set (Set 24)",
+                "slug": "mens-graphic-dragon-and-streetwear-baggy-tee-set-set-24",
+                "price": 1299.0,
+                "compare_at_price": 1689,
+                "category": "men-baggy",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_30_2026-07-10_10-23-49.jpg",
+                "live_image": "/images/products/photo_30_2026-07-10_10-23-49.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Heavyweight Cotton",
+                "brand": "GrowX Streetwear",
+                "rating": 5.0,
+                "reviewsCount": 34,
+                "tags": [
+                        "men-baggy",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_men_25",
+                "name": "Men's Minimalist Linen Summer Oversized Set (Set 25)",
+                "slug": "mens-minimalist-linen-summer-oversized-set-set-25",
+                "price": 1499.0,
+                "compare_at_price": 1949,
+                "category": "men-baggy",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_31_2026-07-10_10-23-49.jpg",
+                "live_image": "/images/products/photo_31_2026-07-10_10-23-49.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Organic Linen",
+                "brand": "GrowX Resort",
+                "rating": 4.5,
+                "reviewsCount": 37,
+                "tags": [
+                        "men-baggy",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": true
+        },
+        {
+                "id": "prod_men_26",
+                "name": "Men's Minimalist Linen Summer Oversized Set (Set 26)",
+                "slug": "mens-minimalist-linen-summer-oversized-set-set-26",
+                "price": 1499.0,
+                "compare_at_price": 1949,
+                "category": "men-baggy",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_32_2026-07-10_10-23-49.jpg",
+                "live_image": "/images/products/photo_32_2026-07-10_10-23-49.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Organic Linen",
+                "brand": "GrowX Resort",
+                "rating": 4.6,
+                "reviewsCount": 40,
+                "tags": [
+                        "men-baggy",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": true,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_men_27",
+                "name": "Men's Minimalist Linen Summer Oversized Set (Set 27)",
+                "slug": "mens-minimalist-linen-summer-oversized-set-set-27",
+                "price": 1499.0,
+                "compare_at_price": 1949,
+                "category": "men-baggy",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_33_2026-07-10_10-23-49.jpg",
+                "live_image": "/images/products/photo_33_2026-07-10_10-23-49.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Organic Linen",
+                "brand": "GrowX Resort",
+                "rating": 4.7,
+                "reviewsCount": 43,
+                "tags": [
+                        "men-baggy",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_men_28",
+                "name": "Men's Minimalist Linen Summer Oversized Set (Set 28)",
+                "slug": "mens-minimalist-linen-summer-oversized-set-set-28",
+                "price": 1499.0,
+                "compare_at_price": 1949,
+                "category": "men-baggy",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_34_2026-07-10_10-23-49.jpg",
+                "live_image": "/images/products/photo_34_2026-07-10_10-23-49.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Organic Linen",
+                "brand": "GrowX Resort",
+                "rating": 4.8,
+                "reviewsCount": 46,
+                "tags": [
+                        "men-baggy",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": true
+        },
+        {
+                "id": "prod_men_29",
+                "name": "Men's Minimalist Linen Summer Oversized Set (Set 29)",
+                "slug": "mens-minimalist-linen-summer-oversized-set-set-29",
+                "price": 1499.0,
+                "compare_at_price": 1949,
+                "category": "men-baggy",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_35_2026-07-10_10-23-49.jpg",
+                "live_image": "/images/products/photo_35_2026-07-10_10-23-49.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Organic Linen",
+                "brand": "GrowX Resort",
+                "rating": 4.9,
+                "reviewsCount": 49,
+                "tags": [
+                        "men-baggy",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_men_30",
+                "name": "Men's Minimalist Linen Summer Oversized Set (Set 30)",
+                "slug": "mens-minimalist-linen-summer-oversized-set-set-30",
+                "price": 1499.0,
+                "compare_at_price": 1949,
+                "category": "men-baggy",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_36_2026-07-10_10-23-49.jpg",
+                "live_image": "/images/products/photo_36_2026-07-10_10-23-49.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Organic Linen",
+                "brand": "GrowX Resort",
+                "rating": 5.0,
+                "reviewsCount": 52,
+                "tags": [
+                        "men-baggy",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_men_31",
+                "name": "Men's Urban Street Classic Plaid Outfit Combo (Set 31)",
+                "slug": "mens-urban-street-classic-plaid-outfit-combo-set-31",
+                "price": 1999.0,
+                "compare_at_price": 2599,
+                "category": "men-pants",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_37_2026-07-10_10-23-49.jpg",
+                "live_image": "/images/products/photo_37_2026-07-10_10-23-49.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Flannel & Denim",
+                "brand": "GrowX Originals",
+                "rating": 4.5,
+                "reviewsCount": 10,
+                "tags": [
+                        "men-pants",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": true,
+                "isNewArrival": true
+        },
+        {
+                "id": "prod_men_32",
+                "name": "Men's Urban Street Classic Plaid Outfit Combo (Set 32)",
+                "slug": "mens-urban-street-classic-plaid-outfit-combo-set-32",
+                "price": 1999.0,
+                "compare_at_price": 2599,
+                "category": "men-pants",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_38_2026-07-10_10-23-49.jpg",
+                "live_image": "/images/products/photo_38_2026-07-10_10-23-49.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Flannel & Denim",
+                "brand": "GrowX Originals",
+                "rating": 4.6,
+                "reviewsCount": 13,
+                "tags": [
+                        "men-pants",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_men_33",
+                "name": "Men's Urban Street Classic Plaid Outfit Combo (Set 33)",
+                "slug": "mens-urban-street-classic-plaid-outfit-combo-set-33",
+                "price": 1999.0,
+                "compare_at_price": 2599,
+                "category": "men-pants",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_39_2026-07-10_10-23-49.jpg",
+                "live_image": "/images/products/photo_39_2026-07-10_10-23-49.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Flannel & Denim",
+                "brand": "GrowX Originals",
+                "rating": 4.7,
+                "reviewsCount": 16,
+                "tags": [
+                        "men-pants",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_men_34",
+                "name": "Men's Luxury Plaid Flannel Shirt & Chino Combo (Set 34)",
+                "slug": "mens-luxury-plaid-flannel-shirt-and-chino-combo-set-34",
+                "price": 1899.0,
+                "compare_at_price": 2469,
+                "category": "men-shirts",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_3_2026-07-10_10-23-48.jpg",
+                "live_image": "/images/products/photo_3_2026-07-10_10-23-48.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Premium Flannel",
+                "brand": "GrowX Premium",
+                "rating": 4.8,
+                "reviewsCount": 19,
+                "tags": [
+                        "men-shirts",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": true
+        },
+        {
+                "id": "prod_men_35",
+                "name": "Men's Urban Street Classic Plaid Outfit Combo (Set 35)",
+                "slug": "mens-urban-street-classic-plaid-outfit-combo-set-35",
+                "price": 1999.0,
+                "compare_at_price": 2599,
+                "category": "men-pants",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_40_2026-07-10_10-23-49.jpg",
+                "live_image": "/images/products/photo_40_2026-07-10_10-23-49.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Flannel & Denim",
+                "brand": "GrowX Originals",
+                "rating": 4.9,
+                "reviewsCount": 22,
+                "tags": [
+                        "men-pants",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_men_36",
+                "name": "Men's Urban Street Classic Plaid Outfit Combo (Set 36)",
+                "slug": "mens-urban-street-classic-plaid-outfit-combo-set-36",
+                "price": 1999.0,
+                "compare_at_price": 2599,
+                "category": "men-pants",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_41_2026-07-10_10-23-49.jpg",
+                "live_image": "/images/products/photo_41_2026-07-10_10-23-49.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Flannel & Denim",
+                "brand": "GrowX Originals",
+                "rating": 5.0,
+                "reviewsCount": 25,
+                "tags": [
+                        "men-pants",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": true,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_men_37",
+                "name": "Men's Urban Street Classic Plaid Outfit Combo (Set 37)",
+                "slug": "mens-urban-street-classic-plaid-outfit-combo-set-37",
+                "price": 1999.0,
+                "compare_at_price": 2599,
+                "category": "men-pants",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_42_2026-07-10_10-23-49.jpg",
+                "live_image": "/images/products/photo_42_2026-07-10_10-23-49.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Flannel & Denim",
+                "brand": "GrowX Originals",
+                "rating": 4.5,
+                "reviewsCount": 28,
+                "tags": [
+                        "men-pants",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": true
+        },
+        {
+                "id": "prod_men_38",
+                "name": "Men's Luxury Plaid Flannel Shirt & Chino Combo (Set 38)",
+                "slug": "mens-luxury-plaid-flannel-shirt-and-chino-combo-set-38",
+                "price": 1899.0,
+                "compare_at_price": 2469,
+                "category": "men-shirts",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_4_2026-07-10_10-23-48.jpg",
+                "live_image": "/images/products/photo_4_2026-07-10_10-23-48.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Premium Flannel",
+                "brand": "GrowX Premium",
+                "rating": 4.6,
+                "reviewsCount": 31,
+                "tags": [
+                        "men-shirts",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_men_39",
+                "name": "Men's Luxury Plaid Flannel Shirt & Chino Combo (Set 39)",
+                "slug": "mens-luxury-plaid-flannel-shirt-and-chino-combo-set-39",
+                "price": 1899.0,
+                "compare_at_price": 2469,
+                "category": "men-shirts",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_5_2026-07-10_10-23-48.jpg",
+                "live_image": "/images/products/photo_5_2026-07-10_10-23-48.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Premium Flannel",
+                "brand": "GrowX Premium",
+                "rating": 4.7,
+                "reviewsCount": 34,
+                "tags": [
+                        "men-shirts",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_men_40",
+                "name": "Men's Luxury Plaid Flannel Shirt & Chino Combo (Set 40)",
+                "slug": "mens-luxury-plaid-flannel-shirt-and-chino-combo-set-40",
+                "price": 1899.0,
+                "compare_at_price": 2469,
+                "category": "men-shirts",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_6_2026-07-10_10-23-48.jpg",
+                "live_image": "/images/products/photo_6_2026-07-10_10-23-48.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Premium Flannel",
+                "brand": "GrowX Premium",
+                "rating": 4.8,
+                "reviewsCount": 37,
+                "tags": [
+                        "men-shirts",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": true
+        },
+        {
+                "id": "prod_men_41",
+                "name": "Men's Luxury Plaid Flannel Shirt & Chino Combo (Set 41)",
+                "slug": "mens-luxury-plaid-flannel-shirt-and-chino-combo-set-41",
+                "price": 1899.0,
+                "compare_at_price": 2469,
+                "category": "men-shirts",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_7_2026-07-10_10-23-48.jpg",
+                "live_image": "/images/products/photo_7_2026-07-10_10-23-48.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Premium Flannel",
+                "brand": "GrowX Premium",
+                "rating": 4.9,
+                "reviewsCount": 40,
+                "tags": [
+                        "men-shirts",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": true,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_men_42",
+                "name": "Men's Luxury Plaid Flannel Shirt & Chino Combo (Set 42)",
+                "slug": "mens-luxury-plaid-flannel-shirt-and-chino-combo-set-42",
+                "price": 1899.0,
+                "compare_at_price": 2469,
+                "category": "men-shirts",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_8_2026-07-10_10-23-48.jpg",
+                "live_image": "/images/products/photo_8_2026-07-10_10-23-48.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Premium Flannel",
+                "brand": "GrowX Premium",
+                "rating": 5.0,
+                "reviewsCount": 43,
+                "tags": [
+                        "men-shirts",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_men_43",
+                "name": "Men's Luxury Plaid Flannel Shirt & Chino Combo (Set 43)",
+                "slug": "mens-luxury-plaid-flannel-shirt-and-chino-combo-set-43",
+                "price": 1899.0,
+                "compare_at_price": 2469,
+                "category": "men-shirts",
+                "gender": "men",
+                "image": "./frontend/public/images/products/photo_9_2026-07-10_10-23-48.jpg",
+                "live_image": "/images/products/photo_9_2026-07-10_10-23-48.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Black",
+                        "White",
+                        "Beige",
+                        "Blue"
+                ],
+                "fabric": "Premium Flannel",
+                "brand": "GrowX Premium",
+                "rating": 4.5,
+                "reviewsCount": 46,
+                "tags": [
+                        "men-shirts",
+                        "men",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": true
+        },
+        {
+                "id": "prod_women_1",
+                "name": "Women's Lucknowi Handloom Premium Kurti & Dupatta Set (Set 1)",
+                "slug": "womens-lucknowi-handloom-premium-kurti-and-dupatta-set-set-1",
+                "price": 1999.0,
+                "compare_at_price": 2599,
+                "category": "women-kurties",
+                "gender": "women",
+                "image": "./frontend/public/images/products/photo_26_2026-07-10_11-19-21.jpg",
+                "live_image": "/images/products/photo_26_2026-07-10_11-19-21.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Lilac",
+                        "Beige",
+                        "White",
+                        "Green",
+                        "Burgundy"
+                ],
+                "fabric": "Premium Handloom Cotton",
+                "brand": "GrowX Ethnic",
+                "rating": 4.6,
+                "reviewsCount": 15,
+                "tags": [
+                        "women-kurties",
+                        "women",
+                        "new-arrivals"
+                ],
+                "isFeatured": true,
+                "isNewArrival": true
+        },
+        {
+                "id": "prod_women_2",
+                "name": "Women's Lucknowi Handloom Premium Kurti & Dupatta Set (Set 2)",
+                "slug": "womens-lucknowi-handloom-premium-kurti-and-dupatta-set-set-2",
+                "price": 1999.0,
+                "compare_at_price": 2599,
+                "category": "women-kurties",
+                "gender": "women",
+                "image": "./frontend/public/images/products/photo_27_2026-07-10_11-19-21.jpg",
+                "live_image": "/images/products/photo_27_2026-07-10_11-19-21.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Lilac",
+                        "Beige",
+                        "White",
+                        "Green",
+                        "Burgundy"
+                ],
+                "fabric": "Premium Handloom Cotton",
+                "brand": "GrowX Ethnic",
+                "rating": 4.7,
+                "reviewsCount": 19,
+                "tags": [
+                        "women-kurties",
+                        "women",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_women_3",
+                "name": "Women's Lucknowi Handloom Premium Kurti & Dupatta Set (Set 3)",
+                "slug": "womens-lucknowi-handloom-premium-kurti-and-dupatta-set-set-3",
+                "price": 1999.0,
+                "compare_at_price": 2599,
+                "category": "women-kurties",
+                "gender": "women",
+                "image": "./frontend/public/images/products/photo_28_2026-07-10_11-19-21.jpg",
+                "live_image": "/images/products/photo_28_2026-07-10_11-19-21.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Lilac",
+                        "Beige",
+                        "White",
+                        "Green",
+                        "Burgundy"
+                ],
+                "fabric": "Premium Handloom Cotton",
+                "brand": "GrowX Ethnic",
+                "rating": 4.8,
+                "reviewsCount": 23,
+                "tags": [
+                        "women-kurties",
+                        "women",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": true
+        },
+        {
+                "id": "prod_women_4",
+                "name": "Women's Lucknowi Handloom Premium Kurti & Dupatta Set (Set 4)",
+                "slug": "womens-lucknowi-handloom-premium-kurti-and-dupatta-set-set-4",
+                "price": 1999.0,
+                "compare_at_price": 2599,
+                "category": "women-kurties",
+                "gender": "women",
+                "image": "./frontend/public/images/products/photo_30_2026-07-10_11-19-21.jpg",
+                "live_image": "/images/products/photo_30_2026-07-10_11-19-21.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Lilac",
+                        "Beige",
+                        "White",
+                        "Green",
+                        "Burgundy"
+                ],
+                "fabric": "Premium Handloom Cotton",
+                "brand": "GrowX Ethnic",
+                "rating": 4.9,
+                "reviewsCount": 27,
+                "tags": [
+                        "women-kurties",
+                        "women",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_women_5",
+                "name": "Women's Lucknowi Handloom Premium Kurti & Dupatta Set (Set 5)",
+                "slug": "womens-lucknowi-handloom-premium-kurti-and-dupatta-set-set-5",
+                "price": 1999.0,
+                "compare_at_price": 2599,
+                "category": "women-kurties",
+                "gender": "women",
+                "image": "./frontend/public/images/products/photo_32_2026-07-10_11-19-21.jpg",
+                "live_image": "/images/products/photo_32_2026-07-10_11-19-21.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Lilac",
+                        "Beige",
+                        "White",
+                        "Green",
+                        "Burgundy"
+                ],
+                "fabric": "Premium Handloom Cotton",
+                "brand": "GrowX Ethnic",
+                "rating": 5.0,
+                "reviewsCount": 31,
+                "tags": [
+                        "women-kurties",
+                        "women",
+                        "new-arrivals"
+                ],
+                "isFeatured": true,
+                "isNewArrival": true
+        },
+        {
+                "id": "prod_women_6",
+                "name": "Women's Lucknowi Handloom Premium Kurti & Dupatta Set (Set 6)",
+                "slug": "womens-lucknowi-handloom-premium-kurti-and-dupatta-set-set-6",
+                "price": 1999.0,
+                "compare_at_price": 2599,
+                "category": "women-kurties",
+                "gender": "women",
+                "image": "./frontend/public/images/products/photo_33_2026-07-10_11-19-21.jpg",
+                "live_image": "/images/products/photo_33_2026-07-10_11-19-21.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Lilac",
+                        "Beige",
+                        "White",
+                        "Green",
+                        "Burgundy"
+                ],
+                "fabric": "Premium Handloom Cotton",
+                "brand": "GrowX Ethnic",
+                "rating": 4.6,
+                "reviewsCount": 35,
+                "tags": [
+                        "women-kurties",
+                        "women",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_women_7",
+                "name": "Women's Classic Linen Minimalist Lounge Co-Ord Set (Set 7)",
+                "slug": "womens-classic-linen-minimalist-lounge-co-ord-set-set-7",
+                "price": 1699.0,
+                "compare_at_price": 2209,
+                "category": "women-baggy",
+                "gender": "women",
+                "image": "./frontend/public/images/products/photo_34_2026-07-10_11-19-21.jpg",
+                "live_image": "/images/products/photo_34_2026-07-10_11-19-21.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Lilac",
+                        "Beige",
+                        "White",
+                        "Green",
+                        "Burgundy"
+                ],
+                "fabric": "Linen Viscose Blend",
+                "brand": "GrowX Co-Ords",
+                "rating": 4.7,
+                "reviewsCount": 39,
+                "tags": [
+                        "women-baggy",
+                        "women",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": true
+        },
+        {
+                "id": "prod_women_8",
+                "name": "Women's Classic Linen Minimalist Lounge Co-Ord Set (Set 8)",
+                "slug": "womens-classic-linen-minimalist-lounge-co-ord-set-set-8",
+                "price": 1699.0,
+                "compare_at_price": 2209,
+                "category": "women-baggy",
+                "gender": "women",
+                "image": "./frontend/public/images/products/photo_35_2026-07-10_11-19-21.jpg",
+                "live_image": "/images/products/photo_35_2026-07-10_11-19-21.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Lilac",
+                        "Beige",
+                        "White",
+                        "Green",
+                        "Burgundy"
+                ],
+                "fabric": "Linen Viscose Blend",
+                "brand": "GrowX Co-Ords",
+                "rating": 4.8,
+                "reviewsCount": 43,
+                "tags": [
+                        "women-baggy",
+                        "women",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_women_9",
+                "name": "Women's Classic Linen Minimalist Lounge Co-Ord Set (Set 9)",
+                "slug": "womens-classic-linen-minimalist-lounge-co-ord-set-set-9",
+                "price": 1699.0,
+                "compare_at_price": 2209,
+                "category": "women-baggy",
+                "gender": "women",
+                "image": "./frontend/public/images/products/photo_36_2026-07-10_11-19-21.jpg",
+                "live_image": "/images/products/photo_36_2026-07-10_11-19-21.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Lilac",
+                        "Beige",
+                        "White",
+                        "Green",
+                        "Burgundy"
+                ],
+                "fabric": "Linen Viscose Blend",
+                "brand": "GrowX Co-Ords",
+                "rating": 4.9,
+                "reviewsCount": 47,
+                "tags": [
+                        "women-baggy",
+                        "women",
+                        "new-arrivals"
+                ],
+                "isFeatured": true,
+                "isNewArrival": true
+        },
+        {
+                "id": "prod_women_10",
+                "name": "Women's Classic Linen Minimalist Lounge Co-Ord Set (Set 10)",
+                "slug": "womens-classic-linen-minimalist-lounge-co-ord-set-set-10",
+                "price": 1699.0,
+                "compare_at_price": 2209,
+                "category": "women-baggy",
+                "gender": "women",
+                "image": "./frontend/public/images/products/photo_37_2026-07-10_11-19-21.jpg",
+                "live_image": "/images/products/photo_37_2026-07-10_11-19-21.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Lilac",
+                        "Beige",
+                        "White",
+                        "Green",
+                        "Burgundy"
+                ],
+                "fabric": "Linen Viscose Blend",
+                "brand": "GrowX Co-Ords",
+                "rating": 5.0,
+                "reviewsCount": 16,
+                "tags": [
+                        "women-baggy",
+                        "women",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_women_11",
+                "name": "Women's Classic Linen Minimalist Lounge Co-Ord Set (Set 11)",
+                "slug": "womens-classic-linen-minimalist-lounge-co-ord-set-set-11",
+                "price": 1699.0,
+                "compare_at_price": 2209,
+                "category": "women-baggy",
+                "gender": "women",
+                "image": "./frontend/public/images/products/photo_38_2026-07-10_11-19-21.jpg",
+                "live_image": "/images/products/photo_38_2026-07-10_11-19-21.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Lilac",
+                        "Beige",
+                        "White",
+                        "Green",
+                        "Burgundy"
+                ],
+                "fabric": "Linen Viscose Blend",
+                "brand": "GrowX Co-Ords",
+                "rating": 4.6,
+                "reviewsCount": 20,
+                "tags": [
+                        "women-baggy",
+                        "women",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": true
+        },
+        {
+                "id": "prod_women_12",
+                "name": "Women's Classic Linen Minimalist Lounge Co-Ord Set (Set 12)",
+                "slug": "womens-classic-linen-minimalist-lounge-co-ord-set-set-12",
+                "price": 1699.0,
+                "compare_at_price": 2209,
+                "category": "women-baggy",
+                "gender": "women",
+                "image": "./frontend/public/images/products/photo_39_2026-07-10_11-19-21.jpg",
+                "live_image": "/images/products/photo_39_2026-07-10_11-19-21.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Lilac",
+                        "Beige",
+                        "White",
+                        "Green",
+                        "Burgundy"
+                ],
+                "fabric": "Linen Viscose Blend",
+                "brand": "GrowX Co-Ords",
+                "rating": 4.7,
+                "reviewsCount": 24,
+                "tags": [
+                        "women-baggy",
+                        "women",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_women_13",
+                "name": "Women's Classic Linen Minimalist Lounge Co-Ord Set (Set 13)",
+                "slug": "womens-classic-linen-minimalist-lounge-co-ord-set-set-13",
+                "price": 1699.0,
+                "compare_at_price": 2209,
+                "category": "women-baggy",
+                "gender": "women",
+                "image": "./frontend/public/images/products/photo_40_2026-07-10_11-19-21.jpg",
+                "live_image": "/images/products/photo_40_2026-07-10_11-19-21.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Lilac",
+                        "Beige",
+                        "White",
+                        "Green",
+                        "Burgundy"
+                ],
+                "fabric": "Linen Viscose Blend",
+                "brand": "GrowX Co-Ords",
+                "rating": 4.8,
+                "reviewsCount": 28,
+                "tags": [
+                        "women-baggy",
+                        "women",
+                        "new-arrivals"
+                ],
+                "isFeatured": true,
+                "isNewArrival": true
+        },
+        {
+                "id": "prod_women_14",
+                "name": "Women's Classic Linen Minimalist Lounge Co-Ord Set (Set 14)",
+                "slug": "womens-classic-linen-minimalist-lounge-co-ord-set-set-14",
+                "price": 1699.0,
+                "compare_at_price": 2209,
+                "category": "women-baggy",
+                "gender": "women",
+                "image": "./frontend/public/images/products/photo_41_2026-07-10_11-19-21.jpg",
+                "live_image": "/images/products/photo_41_2026-07-10_11-19-21.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Lilac",
+                        "Beige",
+                        "White",
+                        "Green",
+                        "Burgundy"
+                ],
+                "fabric": "Linen Viscose Blend",
+                "brand": "GrowX Co-Ords",
+                "rating": 4.9,
+                "reviewsCount": 32,
+                "tags": [
+                        "women-baggy",
+                        "women",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_women_15",
+                "name": "Women's Classic Linen Minimalist Lounge Co-Ord Set (Set 15)",
+                "slug": "womens-classic-linen-minimalist-lounge-co-ord-set-set-15",
+                "price": 1699.0,
+                "compare_at_price": 2209,
+                "category": "women-baggy",
+                "gender": "women",
+                "image": "./frontend/public/images/products/photo_42_2026-07-10_11-19-21.jpg",
+                "live_image": "/images/products/photo_42_2026-07-10_11-19-21.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Lilac",
+                        "Beige",
+                        "White",
+                        "Green",
+                        "Burgundy"
+                ],
+                "fabric": "Linen Viscose Blend",
+                "brand": "GrowX Co-Ords",
+                "rating": 5.0,
+                "reviewsCount": 36,
+                "tags": [
+                        "women-baggy",
+                        "women",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": true
+        },
+        {
+                "id": "prod_women_16",
+                "name": "Women's Cozy Athletic Fleece Lounge Crop Tee Combo (Set 16)",
+                "slug": "womens-cozy-athletic-fleece-lounge-crop-tee-combo-set-16",
+                "price": 1399.0,
+                "compare_at_price": 1819,
+                "category": "women-tops",
+                "gender": "women",
+                "image": "./frontend/public/images/products/photo_43_2026-07-10_11-19-21.jpg",
+                "live_image": "/images/products/photo_43_2026-07-10_11-19-21.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Lilac",
+                        "Beige",
+                        "White",
+                        "Green",
+                        "Burgundy"
+                ],
+                "fabric": "Terry Soft Cotton",
+                "brand": "GrowX Activewear",
+                "rating": 4.6,
+                "reviewsCount": 40,
+                "tags": [
+                        "women-tops",
+                        "women",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_women_17",
+                "name": "Women's Cozy Athletic Fleece Lounge Crop Tee Combo (Set 17)",
+                "slug": "womens-cozy-athletic-fleece-lounge-crop-tee-combo-set-17",
+                "price": 1399.0,
+                "compare_at_price": 1819,
+                "category": "women-tops",
+                "gender": "women",
+                "image": "./frontend/public/images/products/photo_44_2026-07-10_11-19-21.jpg",
+                "live_image": "/images/products/photo_44_2026-07-10_11-19-21.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Lilac",
+                        "Beige",
+                        "White",
+                        "Green",
+                        "Burgundy"
+                ],
+                "fabric": "Terry Soft Cotton",
+                "brand": "GrowX Activewear",
+                "rating": 4.7,
+                "reviewsCount": 44,
+                "tags": [
+                        "women-tops",
+                        "women",
+                        "new-arrivals"
+                ],
+                "isFeatured": true,
+                "isNewArrival": true
+        },
+        {
+                "id": "prod_women_18",
+                "name": "Women's Cozy Athletic Fleece Lounge Crop Tee Combo (Set 18)",
+                "slug": "womens-cozy-athletic-fleece-lounge-crop-tee-combo-set-18",
+                "price": 1399.0,
+                "compare_at_price": 1819,
+                "category": "women-tops",
+                "gender": "women",
+                "image": "./frontend/public/images/products/photo_45_2026-07-10_11-19-21.jpg",
+                "live_image": "/images/products/photo_45_2026-07-10_11-19-21.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Lilac",
+                        "Beige",
+                        "White",
+                        "Green",
+                        "Burgundy"
+                ],
+                "fabric": "Terry Soft Cotton",
+                "brand": "GrowX Activewear",
+                "rating": 4.8,
+                "reviewsCount": 48,
+                "tags": [
+                        "women-tops",
+                        "women",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_women_19",
+                "name": "Women's Cozy Athletic Fleece Lounge Crop Tee Combo (Set 19)",
+                "slug": "womens-cozy-athletic-fleece-lounge-crop-tee-combo-set-19",
+                "price": 1399.0,
+                "compare_at_price": 1819,
+                "category": "women-tops",
+                "gender": "women",
+                "image": "./frontend/public/images/products/photo_46_2026-07-10_11-19-21.jpg",
+                "live_image": "/images/products/photo_46_2026-07-10_11-19-21.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Lilac",
+                        "Beige",
+                        "White",
+                        "Green",
+                        "Burgundy"
+                ],
+                "fabric": "Terry Soft Cotton",
+                "brand": "GrowX Activewear",
+                "rating": 4.9,
+                "reviewsCount": 17,
+                "tags": [
+                        "women-tops",
+                        "women",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": true
+        },
+        {
+                "id": "prod_women_20",
+                "name": "Women's Cozy Athletic Fleece Lounge Crop Tee Combo (Set 20)",
+                "slug": "womens-cozy-athletic-fleece-lounge-crop-tee-combo-set-20",
+                "price": 1399.0,
+                "compare_at_price": 1819,
+                "category": "women-tops",
+                "gender": "women",
+                "image": "./frontend/public/images/products/photo_47_2026-07-10_11-19-21.jpg",
+                "live_image": "/images/products/photo_47_2026-07-10_11-19-21.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Lilac",
+                        "Beige",
+                        "White",
+                        "Green",
+                        "Burgundy"
+                ],
+                "fabric": "Terry Soft Cotton",
+                "brand": "GrowX Activewear",
+                "rating": 5.0,
+                "reviewsCount": 21,
+                "tags": [
+                        "women-tops",
+                        "women",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        },
+        {
+                "id": "prod_women_21",
+                "name": "Women's Cozy Athletic Fleece Lounge Crop Tee Combo (Set 21)",
+                "slug": "womens-cozy-athletic-fleece-lounge-crop-tee-combo-set-21",
+                "price": 1399.0,
+                "compare_at_price": 1819,
+                "category": "women-tops",
+                "gender": "women",
+                "image": "./frontend/public/images/products/photo_48_2026-07-10_11-19-21.jpg",
+                "live_image": "/images/products/photo_48_2026-07-10_11-19-21.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Lilac",
+                        "Beige",
+                        "White",
+                        "Green",
+                        "Burgundy"
+                ],
+                "fabric": "Terry Soft Cotton",
+                "brand": "GrowX Activewear",
+                "rating": 4.6,
+                "reviewsCount": 25,
+                "tags": [
+                        "women-tops",
+                        "women",
+                        "new-arrivals"
+                ],
+                "isFeatured": true,
+                "isNewArrival": true
+        },
+        {
+                "id": "prod_women_22",
+                "name": "Women's Cozy Athletic Fleece Lounge Crop Tee Combo (Set 22)",
+                "slug": "womens-cozy-athletic-fleece-lounge-crop-tee-combo-set-22",
+                "price": 1399.0,
+                "compare_at_price": 1819,
+                "category": "women-tops",
+                "gender": "women",
+                "image": "./frontend/public/images/products/photo_49_2026-07-10_11-19-21.jpg",
+                "live_image": "/images/products/photo_49_2026-07-10_11-19-21.jpg",
+                "sizes": [
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                ],
+                "colors": [
+                        "Lilac",
+                        "Beige",
+                        "White",
+                        "Green",
+                        "Burgundy"
+                ],
+                "fabric": "Terry Soft Cotton",
+                "brand": "GrowX Activewear",
+                "rating": 4.7,
+                "reviewsCount": 29,
+                "tags": [
+                        "women-tops",
+                        "women",
+                        "new-arrivals"
+                ],
+                "isFeatured": false,
+                "isNewArrival": false
+        }
+];
+
+        let cart = [];
+        let wishlist = [];
+        let activeFilters = {
+            category: 'all',
+            sizes: [],
+            colors: [],
+            maxPrice: 5000,
+            tag: ''
+        };
+        let isLoggedIn = false;
+        let selectedPaymentMethod = 'razorpay';
+        let appliedCoupon = null;
+
+        window.onload = function() {
+            renderHomepageBestsellers();
+            applyFiltersAndRender();
+            updateGlobalBadges();
+        };
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.add('hidden');
+            });
+            const activeTab = document.getElementById('tab-' + tabId);
+            if (activeTab) {
+                activeTab.classList.remove('hidden');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderHomepageBestsellers() {
+            const wrapper = document.getElementById('homepage-bestsellers');
+            wrapper.innerHTML = '';
+            
+            const bestSellers = products.filter(p => p.isFeatured).slice(0, 4);
+
+            bestSellers.forEach(p => {
+                const discount = Math.round(((p.compare_at_price - p.price) / p.compare_at_price) * 100);
+                wrapper.innerHTML += `
+                    <div class="glass-card rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group cursor-pointer card-glow flex flex-col h-full" onclick="openProductDetail('${p.id}')">
+                        <div class="relative h-72 overflow-hidden">
+                            <img src="${p.image}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="${p.name}">
+                            <span class="absolute top-3 left-3 bg-red-500 text-white text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">${discount}% OFF</span>
+                        </div>
+                        <div class="p-5 flex-grow flex flex-col justify-between space-y-2">
+                            <div>
+                                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">${p.brand} • ${p.fabric}</p>
+                                <h3 class="text-xs font-bold text-white group-hover:text-amber-400 transition-colors line-clamp-1">${p.name}</h3>
+                            </div>
+                            <div class="flex justify-between items-center pt-2">
+                                <span class="text-sm font-black text-amber-400">₹${p.price.toLocaleString('en-IN')}</span>
+                                <span class="p-2 rounded-full bg-white text-black group-hover:bg-amber-400 group-hover:text-black transition-colors">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // FILTER TRIGGERS
+        function filterShop(categoryKey = '', tagKey = '') {
+            activeFilters.category = categoryKey || 'all';
+            activeFilters.tag = tagKey;
+            
+            document.getElementById('category-filter-select').value = categoryKey || 'all';
+
+            const titleEl = document.getElementById('shop-title');
+            if (tagKey) {
+                titleEl.innerText = `${tagKey.replace('-', ' ').toUpperCase()} COLLECTIONS`;
+            } else if (categoryKey) {
+                titleEl.innerText = `${categoryKey.replace('-', ' ').toUpperCase()} LUXURY SECTION`;
+            } else {
+                titleEl.innerText = "SHOP ALL COLLECTIONS";
+            }
+
+            applyFiltersAndRender();
+            switchTab('shop');
+        }
+
+        function handleCategoryFilterSelect(val) {
+            activeFilters.category = val;
+            applyFiltersAndRender();
+        }
+
+        function toggleSizeFilter(size, el) {
+            const index = activeFilters.sizes.indexOf(size);
+            if (index > -1) {
+                activeFilters.sizes.splice(index, 1);
+                el.className = "w-8 h-8 text-[11px] font-bold rounded hover:bg-white/5 transition-all text-gray-300";
+            } else {
+                activeFilters.sizes.push(size);
+                el.className = "w-8 h-8 text-[11px] font-bold rounded bg-amber-400 text-black transition-all";
+            }
+            applyFiltersAndRender();
+        }
+
+        function updatePriceSlider(val) {
+            activeFilters.maxPrice = parseFloat(val);
+            document.getElementById('price-slider-value').innerText = `₹${val}`;
+            applyFiltersAndRender();
+        }
+
+        function resetAllFilters() {
+            activeFilters = {
+                category: 'all',
+                sizes: [],
+                colors: [],
+                maxPrice: 5000,
+                tag: ''
+            };
+            
+            document.getElementById('category-filter-select').value = 'all';
+            document.querySelectorAll('[id^="size-btn-"]').forEach(btn => btn.className = "w-8 h-8 text-[11px] font-bold rounded hover:bg-white/5 transition-all text-gray-300");
+            document.getElementById('price-range-slider').value = 5000;
+            document.getElementById('price-slider-value').innerText = "₹5000";
+            
+            applyFiltersAndRender();
+        }
+
+        // FILTER ACTION ENGINE
+        function applyFiltersAndRender() {
+            const grid = document.getElementById('shop-products-grid');
+            const emptyState = document.getElementById('shop-empty-state');
+            grid.innerHTML = '';
+
+            let filtered = [...products];
+
+            if (activeFilters.category !== 'all') {
+                filtered = filtered.filter(p => p.category === activeFilters.category);
+            }
+
+            if (activeFilters.sizes.length > 0) {
+                filtered = filtered.filter(p => p.sizes.some(s => activeFilters.sizes.includes(s)));
+            }
+
+            filtered = filtered.filter(p => p.price <= activeFilters.maxPrice);
+
+            if (activeFilters.tag) {
+                filtered = filtered.filter(p => 
+                    p.name.toLowerCase().includes(activeFilters.tag) ||
+                    p.brand.toLowerCase().includes(activeFilters.tag) ||
+                    p.fabric.toLowerCase().includes(activeFilters.tag)
+                );
+            }
+
+            if (filtered.length === 0) {
+                emptyState.classList.remove('hidden');
+                grid.classList.add('hidden');
+                return;
+            } else {
+                emptyState.classList.add('hidden');
+                grid.classList.remove('hidden');
+            }
+
+            filtered.forEach(p => {
+                const discount = Math.round(((p.compare_at_price - p.price) / p.compare_at_price) * 100);
+                grid.innerHTML += `
+                    <div class="glass-card rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group cursor-pointer card-glow flex flex-col justify-between" onclick="openProductDetail('${p.id}')">
+                        <div class="relative h-72 overflow-hidden">
+                            <img src="${p.image}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="${p.name}">
+                            <span class="absolute top-3 left-3 bg-black text-white text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">${discount}% OFF</span>
+                        </div>
+                        <div class="p-5 space-y-2 flex-grow flex flex-col justify-between">
+                            <div>
+                                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">${p.brand} • ${p.fabric}</p>
+                                <h3 class="text-xs font-bold text-white group-hover:text-amber-400 transition-colors line-clamp-1">${p.name}</h3>
+                            </div>
+                            <div class="flex justify-between items-center pt-2">
+                                <span class="text-sm font-black text-amber-400">₹${p.price.toLocaleString('en-IN')}</span>
+                                <span class="p-2 rounded-full bg-white text-black group-hover:bg-amber-400 group-hover:text-black transition-all">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // PRODUCT DETAIL
+        let chosenSize = 'M';
+        let chosenColor = 'Default';
+        let detailQuantity = 1;
+
+        function openProductDetail(productId) {
+            const p = products.find(prod => prod.id === productId);
+            if (!p) return;
+
+            chosenSize = p.sizes[0] || 'M';
+            chosenColor = p.colors[0] || 'Default';
+            detailQuantity = 1;
+
+            const layout = document.getElementById('product-detail-layout');
+            
+            let sizeHtml = '';
+            p.sizes.forEach(sz => {
+                sizeHtml += `
+                    <button id="detail-size-${sz}" onclick="selectDetailSize('${sz}')" class="px-3.5 py-2 text-xs font-bold border ${sz === chosenSize ? 'border-amber-400 bg-amber-400/10 text-white' : 'border-white/10 text-gray-300'} rounded-lg hover:border-amber-400 transition-all uppercase">${sz}</button>
+                `;
+            });
+
+            layout.innerHTML = `
+                <div class="space-y-4">
+                    <div class="relative overflow-hidden rounded-3xl h-[450px] bg-white/5 border border-white/5 group">
+                        <img id="detail-main-img" src="${p.image}" class="w-full h-full object-cover transition-transform duration-300 hover:scale-125 cursor-zoom-in" alt="${p.name}">
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <p class="text-xs text-amber-400 uppercase font-black tracking-widest">${p.brand} • ${p.fabric} Original</p>
+                    <h1 class="heading-font text-xl sm:text-2xl font-extrabold text-white tracking-wide">${p.name}</h1>
+                    
+                    <div class="flex items-center gap-2">
+                        <div class="flex text-amber-400 text-xs">★★★★★</div>
+                        <span class="text-xs text-gray-400 font-bold">(${p.reviewsCount} Customer Reviews)</span>
+                    </div>
+
+                    <div class="space-x-2 border-b border-white/5 pb-4">
+                        <span class="text-2xl font-black text-amber-400">₹${p.price.toLocaleString('en-IN')}</span>
+                        <span class="text-sm line-through text-gray-400">₹${p.compare_at_price.toLocaleString('en-IN')}</span>
+                    </div>
+
+                    <p class="text-xs text-gray-300 leading-relaxed font-light">
+                        Expertly designed relaxed luxury fit for maximum urban performance and comfort. Manufactured under strict quality parameters using sustainable dyes and structural alignments.
+                    </p>
+
+                    <!-- Sizes -->
+                    <div class="space-y-2">
+                        <span class="font-bold text-xs text-gray-400 uppercase block">Select Size:</span>
+                        <div class="flex gap-2">${sizeHtml}</div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <button onclick="addProductToCart('${p.id}')" class="flex-grow py-4 bg-white text-black font-extrabold tracking-widest text-xs uppercase hover:bg-amber-400 transition-all rounded-xl shadow-lg flex items-center justify-center gap-2">
+                            Add To Bag
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            switchTab('product-detail');
+        }
+
+        function selectDetailSize(size) {
+            chosenSize = size;
+            document.querySelectorAll('[id^="detail-size-"]').forEach(btn => {
+                btn.className = "px-3.5 py-2 text-xs font-bold border border-white/10 text-gray-300 rounded-lg hover:border-amber-400 transition-all uppercase";
+            });
+            document.getElementById(`detail-size-${size}`).className = "px-3.5 py-2 text-xs font-bold border border-amber-400 bg-amber-400/10 text-white rounded-lg hover:border-amber-400 transition-all uppercase";
+        }
+
+        function addProductToCart(productId) {
+            const p = products.find(prod => prod.id === productId);
+            if (!p) return;
+
+            const index = cart.findIndex(item => item.id === productId && item.size === chosenSize && item.color === chosenColor);
+            
+            if (index > -1) {
+                cart[index].quantity += detailQuantity;
+            } else {
+                cart.push({
+                    id: productId,
+                    name: p.name,
+                    price: p.price,
+                    size: chosenSize,
+                    color: chosenColor,
+                    quantity: detailQuantity,
+                    image: p.image
+                });
+            }
+
+            updateGlobalBadges();
+            renderCart();
+            alert(`Added ${detailQuantity}x ${p.name} to your Shopping Bag successfully!`);
+        }
+
+        function updateGlobalBadges() {
+            const count = cart.reduce((acc, item) => acc + item.quantity, 0);
+            const cartBadge = document.getElementById('cart-badge');
+            
+            if (count > 0) {
+                cartBadge.innerText = count;
+                cartBadge.classList.remove('hidden');
+            } else {
+                cartBadge.classList.add('hidden');
+            }
+        }
+
+        function renderCart() {
+            const wrapper = document.getElementById('cart-items-wrapper');
+            wrapper.innerHTML = '';
+
+            if (cart.length === 0) {
+                wrapper.innerHTML = `
+                    <div class="text-center py-16 glass-card rounded-3xl space-y-4">
+                        <h3 class="text-sm font-bold">Your Shopping Bag is Empty</h3>
+                        <button onclick="switchTab('shop')" class="px-6 py-2 bg-white text-black text-xs font-bold uppercase rounded-full hover:bg-amber-400 transition-all">Go Shop</button>
+                    </div>
+                `;
+                calculateCartTotals();
+                return;
+            }
+
+            cart.forEach((item, idx) => {
+                wrapper.innerHTML += `
+                    <div class="glass-card rounded-2xl p-4 flex gap-4 items-center justify-between flex-wrap sm:flex-nowrap">
+                        <div class="flex gap-4 items-center">
+                            <img src="${item.image}" class="w-12 h-14 object-cover rounded-lg" alt="">
+                            <div>
+                                <h4 class="text-xs font-bold text-white line-clamp-1">${item.name}</h4>
+                                <p class="text-[10px] text-gray-400 uppercase font-medium">Size: ${item.size}</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-6 justify-between w-full sm:w-auto">
+                            <div class="flex border border-white/10 rounded-lg overflow-hidden w-20">
+                                <button onclick="updateCartItemQty(${idx}, -1)" class="flex-grow py-1 text-center text-xs hover:bg-white/5 font-extrabold">-</button>
+                                <span class="flex-grow py-1 text-center text-xs font-bold bg-white/5">${item.quantity}</span>
+                                <button onclick="updateCartItemQty(${idx}, 1)" class="flex-grow py-1 text-center text-xs hover:bg-white/5 font-extrabold">+</button>
+                            </div>
+
+                            <div class="text-right">
+                                <span class="text-xs font-black text-amber-400 block">₹${(item.price * item.quantity).toLocaleString('en-IN')}</span>
+                                <button onclick="removeCartItem(${idx})" class="text-[10px] text-rose-500 hover:underline">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            calculateCartTotals();
+        }
+
+        function updateCartItemQty(index, amount) {
+            cart[index].quantity = Math.max(1, cart[index].quantity + amount);
+            updateGlobalBadges();
+            renderCart();
+        }
+
+        function removeCartItem(index) {
+            cart.splice(index, 1);
+            updateGlobalBadges();
+            renderCart();
+        }
+
+        function calculateCartTotals() {
+            const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+            const tax = Math.round(subtotal * 0.18);
+            const shipping = (subtotal === 0 || subtotal > 1500) ? 0 : 100;
+            const total = subtotal + tax + shipping;
+
+            document.getElementById('cart-subtotal').innerText = `₹${subtotal.toLocaleString('en-IN')}`;
+            document.getElementById('cart-tax').innerText = `₹${tax.toLocaleString('en-IN')}`;
+            document.getElementById('cart-shipping').innerText = shipping === 0 ? 'FREE' : `₹${shipping}`;
+            document.getElementById('cart-total').innerText = `₹${total.toLocaleString('en-IN')}`;
+        }
+    </script>
+</body>
+</html>
